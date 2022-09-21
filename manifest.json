@@ -1,0 +1,20 @@
+
+{
+    "manifest_version": 3,
+    "name": "ファストメモ",
+    "version": "0.1",
+    "description": "より早く、シンプルにメモする",
+    "icons": {
+        "48": "./appicon75.png"
+    },
+    "background": {
+        "service_worker": "./background.js"
+    },
+    "action": {
+        "default_icon": {
+            "32": "appicon75.png"
+        },
+        "default_popup": "app.html"
+    },
+    "permissions": ["storage", "contextMenus"]
+}
