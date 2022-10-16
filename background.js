@@ -9,7 +9,7 @@ const active_contextmenu = async () => {
         type: 'normal',
         id: "memo",
         title: 'メモ',
-        contexts: ['selection']
+        contexts: ['selection','page']
     });
 };
 

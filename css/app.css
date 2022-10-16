@@ -3,10 +3,9 @@ body{
     height: 500px;
 }
 
-h2 {
+h1 {
     color: rgb(97, 141, 212);
-    border-bottom: dashed 2px rgb(101, 121, 207);
-    font-size: large;
+    border-bottom: 2px dashed rgb(97, 141, 212);
 }
 
 textarea {
