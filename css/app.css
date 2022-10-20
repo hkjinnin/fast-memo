@@ -13,7 +13,6 @@ textarea {
     box-sizing: border-box;
     width: 100%;
     font-size: large;
-    resize: vertical;
     padding-bottom: 10px;
     overflow: hidden;
 }
@@ -44,15 +43,13 @@ hr{
 .round-btn-delete {
     display: block;
     position: absolute;
-    right: 13px;
+    right: 4%;
     bottom: 15px;
     width: 30px;
     height: 30px;
     opacity: 0.5;
     border-radius: 50%;
-    /* 丸みの度合い */
     background: rgb(255, 0, 0);
-    /* ボタンの背景色 */
 }
 
 .round-btn-delete::before,
@@ -64,7 +61,6 @@ hr{
     width: 3px;
     height: 21px;
     background: rgb(255, 255, 255);
-    /* バツ印の色 */
 }
 
 .round-btn-delete::before {
@@ -83,15 +79,13 @@ hr{
 .round-btn-url {
     display: block;
     position: absolute;
-    right: 55px;
+    right: 60px;
     bottom: 15px;
     width: 30px;
     height: 30px;
     opacity: 0.5;
     border-radius: 50%;
-    /* 丸みの度合い */
     background: rgb(0, 162, 255);
-    /* ボタンの背景色 */
 }
 
 .round-btn-url::before {
