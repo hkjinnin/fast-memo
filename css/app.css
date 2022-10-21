@@ -1,4 +1,4 @@
-body{
+body {
     width: 400px;
     height: 500px;
 }
@@ -8,10 +8,16 @@ h1 {
     border-bottom: 2px dashed rgb(97, 141, 212);
 }
 
+hr {
+    border-top: 3px solid rgb(128, 230, 255);
+    margin: 10px 0px 10px 0px;
+}
+
 textarea {
     box-shadow: 0 0 0 1px rgb(128, 230, 255) inset;
     box-sizing: border-box;
     width: 100%;
+    height: auto;
     font-size: large;
     padding-bottom: 10px;
     overflow: hidden;
@@ -22,9 +28,14 @@ textarea:focus {
     box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 }
 
-hr{
-    border-top: 3px solid rgb(128, 230, 255);
-    margin: 10px 0px 10px 0px;
+.f-div {
+    margin: auto;
+}
+
+.ta-div {
+    position: relative;
+    margin: auto;
+    box-sizing: border-box;
 }
 
 .r-date {
@@ -33,11 +44,6 @@ hr{
     bottom: 2px;
     opacity: 0.3;
     user-select: none;
-}
-
-.text-area-div {
-    position: relative;
-    margin: auto;
 }
 
 .round-btn-delete {
@@ -51,7 +57,6 @@ hr{
     border-radius: 50%;
     background: rgb(255, 0, 0);
 }
-
 .round-btn-delete::before,
 .round-btn-delete::after {
     content: "";
@@ -62,17 +67,14 @@ hr{
     height: 21px;
     background: rgb(255, 255, 255);
 }
-
 .round-btn-delete::before {
     transform: translate(-50%, -50%) rotate(45deg);
 }
-
 .round-btn-delete::after {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
-
 .round-btn-delete:hover {
-    opacity: 1.0;
+    opacity: 1;
     border: 2px solid rgb(51, 51, 51);
 }
 
@@ -89,7 +91,7 @@ hr{
 }
 
 .round-btn-url::before {
-    content: '';
+    content: "";
     position: absolute;
     margin-left: 1px;
     margin-top: 1px;
@@ -102,7 +104,7 @@ hr{
 }
 
 .round-btn-url::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 6px;
     top: 6px;
@@ -114,8 +116,8 @@ hr{
     border: solid 2px rgb(0, 0, 0);
 }
 
-.round-btn-url i{
-    content: '';
+.round-btn-url i {
+    content: "";
     position: absolute;
     left: 4px;
     top: 14px;
@@ -125,7 +127,6 @@ hr{
 }
 
 .round-btn-url:hover {
-    opacity: 1.0;
+    opacity: 1;
     border: 2px solid rgb(0, 162, 255);
 }
-

@@ -2,8 +2,19 @@ const $text_area = document.getElementsByTagName("textarea");
 const $delete_btn = document.getElementsByClassName("round-btn-delete");
 const $url_btn = document.getElementsByClassName("round-btn-url");
 const $first = document.getElementById("first");
+const $ta_div = document.getElementsByClassName("ta-div");
 
+chrome.runtime.onMessage.addListener(function (request) {
+    if (request.trigger == "memo") {
+        location.reload();
+    }
+});
 chrome.storage.local.get(["content"], function (result) {
+    const Observer = new ResizeObserver((entries) => {
+        let n = [].slice.call($text_area).indexOf(entries[0].target);
+        $first.style.width = entries[0].target.clientWidth + "px";
+        console.log(entries[0].target.clientWidth);
+    });
     function e_add(n, req) {
         switch (req) {
             case "c":
@@ -18,13 +29,11 @@ chrome.storage.local.get(["content"], function (result) {
             case "u":
                 window.open(result.content[result.content.length - 1 - n][2]);
                 break;
+            
         }
     }
-    function t_style() {
-        $text_area[n].style.height = $text_area[n].value.length + "rem";
-    }
     function s_c(i, n) {
-        let str = '<div class="text-area-div"><textarea>' + result.content[i][n] + '</textarea><span class="r-date">' + result.content[i][0] + '</span><a title="' + result.content[i][3] + '" class="round-btn-url"><i></i></a><a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
+        let str = '<div class="ta-div"><textarea>' + result.content[i][n] + '</textarea><span class="r-date">' + result.content[i][0] + '</span><a title="' + result.content[i][3] + '" class="round-btn-url"><i></i></a><a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
         return str;
     }
     try {
@@ -40,7 +49,6 @@ chrome.storage.local.get(["content"], function (result) {
         }
         Array.from($text_area, (e) => {
             e.addEventListener("input", (e) => {
-                t_style();
                 e_add(Array.prototype.indexOf.call($text_area, e.target), "c");
             });
         });
@@ -53,6 +61,9 @@ chrome.storage.local.get(["content"], function (result) {
             e.addEventListener("click", (e) => {
                 e_add(Array.prototype.indexOf.call($url_btn, e.target), "u");
             });
+        });
+        Array.prototype.forEach.call($text_area, function (ta) {
+            Observer.observe(ta);
         });
     } catch (e) {
         $first.insertAdjacentHTML("beforeend", '<div style="text-align: center;"><h1>まだ何もメモしていません<br>右クリックメニューでメモできます</h1></div>');

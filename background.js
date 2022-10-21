@@ -26,6 +26,9 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
             result["content"] = result["content"] || [];
             result["content"].push(content);
             chrome.storage.local.set(result);
+            chrome.runtime.sendMessage({
+                trigger: "memo"
+            });
         });
     };
 });
