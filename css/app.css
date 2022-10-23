@@ -16,22 +16,23 @@ hr {
 textarea {
     box-shadow: 0 0 0 1px rgb(128, 230, 255) inset;
     box-sizing: border-box;
+    margin: auto auto 2px auto;
     width: 100%;
     height: auto;
-    font-size: large;
-    padding-bottom: 10px;
+    font-size: 20px;
     overflow: hidden;
+    resize: vertical;
+    min-height: 60px;
 }
 
-textarea:focus {
+.textarea-resize:focus {
     outline: 0;
     box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 }
-
-.f-div {
-    margin: auto;
+.last-div {
+    width: 400px;
+    height: 100px;
 }
-
 .ta-div {
     position: relative;
     margin: auto;
@@ -49,7 +50,7 @@ textarea:focus {
 .round-btn-delete {
     display: block;
     position: absolute;
-    right: 4%;
+    right: 15px;
     bottom: 15px;
     width: 30px;
     height: 30px;
@@ -81,7 +82,7 @@ textarea:focus {
 .round-btn-url {
     display: block;
     position: absolute;
-    right: 60px;
+    right: 65px;
     bottom: 15px;
     width: 30px;
     height: 30px;
