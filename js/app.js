@@ -85,8 +85,13 @@ chrome.storage.local.get(["content"], function (result) {
                     return text;
             }
         };
+        var ta_height = function () {
+            font_size = 16
+            const height = (switch_text().length * (font_size / 9)) + 60;
+            return height;
+        }
         this.content = function () {
-            return '<div class="ta-div"><textarea style="height:' + (switch_text().length + 60) + 'px">' + switch_text() + '</textarea><span class="r-date">' + date + "</span>" + btn() + '<a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
+            return '<div class="ta-div"><textarea style="height:' + ta_height() + 'px">' + switch_text() + '</textarea><span class="r-date">' + date + "</span>" + btn() + '<a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
         };
     };
     try {

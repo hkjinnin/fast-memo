@@ -27,5 +27,6 @@ chrome.storage.local.get(["content"], function (result) {
         result.content[n][1] = $textarea.value;
         result.content.splice(n, 1);
         chrome.storage.local.set(result);
+        window.close(location.href);
     });
 });

@@ -19,10 +19,12 @@ textarea {
     margin: auto auto 2px auto;
     width: 100%;
     height: auto;
-    font-size: 20px;
+    font-size: 16px;
     overflow: hidden;
     resize: vertical;
     min-height: 60px;
+    font-family: -apple-system, BlinkMacSystemFont,
+               "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
 textarea:focus {
