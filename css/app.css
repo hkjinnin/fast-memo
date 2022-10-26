@@ -48,7 +48,6 @@ textarea:focus {
 }
 
 .round-btn-delete {
-    display: block;
     position: absolute;
     right: 15px;
     bottom: 15px;
@@ -57,7 +56,7 @@ textarea:focus {
     opacity: 0.5;
     border-radius: 50%;
     background: rgb(255, 0, 0);
-    background-size: 29px;
+    background-size: cover;
     background-position: center;
     background-image: url(../svg/close.svg);
 }
@@ -67,7 +66,6 @@ textarea:focus {
 }
 
 .round-btn-url {
-    display: block;
     position: absolute;
     right: 55px;
     bottom: 15px;
@@ -76,7 +74,7 @@ textarea:focus {
     opacity: 0.5;
     border-radius: 50%;
     background: rgb(0, 162, 255);
-    background-size: 29px;
+    background-size: cover;
     background-position: center;
     background-image: url(../svg/link.svg);
 }
@@ -86,7 +84,6 @@ textarea:focus {
 }
 
 .round-btn-edit {
-    display: block;
     position: absolute;
     right: 95px;
     bottom: 15px;
@@ -95,7 +92,7 @@ textarea:focus {
     opacity: 0.5;
     border-radius: 50%;
     background: rgb(28, 213, 0);
-    background-size: 29px;
+    background-size: cover;
     background-position: center;
     background-image: url(../svg/edit.svg);
 }
