@@ -2,7 +2,7 @@
 {
     "manifest_version": 3,
     "name": "ファストメモ",
-    "version": "0.2",
+    "version": "0.3",
     "description": "より早く、シンプルにメモする",
     "icons": {
         "48": "./appicon75.png"
