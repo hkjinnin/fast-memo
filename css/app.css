@@ -1,58 +1,91 @@
 body {
+    margin: 0;
+}
+
+.container {
     width: 400px;
     height: 500px;
+    overflow-y: scroll;
+    padding: 5px;
+    border: 2px solid rgb(0, 140, 255);
 }
 
-h1 {
-    color: rgb(97, 141, 212);
-    border-bottom: 2px dashed rgb(97, 141, 212);
+.container::-webkit-scrollbar {
+    width: 3px;
 }
 
-hr {
-    border-top: 3px solid rgb(128, 230, 255);
-    margin: 10px 0px 10px 0px;
+.container::-webkit-scrollbar-track {
+    background: rgb(128, 230, 255);
 }
 
-textarea {
-    box-shadow: 0 0 0 1px rgb(128, 230, 255) inset;
+.container::-webkit-scrollbar-thumb {
+    background: rgb(99, 185, 255);
+}
+
+.memo-div {
+    width: 100%;
+    height: 80px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(86, 179, 255);
+    user-select: none;
     box-sizing: border-box;
-    margin: auto auto 2px auto;
+    background: rgb(182, 222, 255);
+    border: dashed 2px rgb(35, 167, 255);
+    color: #454545;
+    margin-bottom: 7px;
+}
+
+.ta-div {
+    width: auto;
+    height: auto;
+    position: relative;
+    margin: 4px auto auto auto;
+}
+
+.textarea-style {
     width: 100%;
     height: auto;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 1px rgb(128, 230, 255) inset;
     font-size: 16px;
-    overflow: hidden;
     resize: vertical;
-    min-height: 60px;
+    min-height: 80px;
     font-family: -apple-system, BlinkMacSystemFont,
-               "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+        "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
-textarea:focus {
+.textarea-style:focus {
     outline: 0;
-    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+    box-shadow: 0 0 0 2px rgb(128, 230, 255) inset;
 }
-.last-div {
-    width: 400px;
-    height: 100px;
+
+.textarea-style::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
-.ta-div {
-    position: relative;
-    margin: auto;
-    box-sizing: border-box;
+
+.textarea-style::-webkit-scrollbar-track {
+    background: rgb(128, 230, 255);
+}
+
+.textarea-style::-webkit-scrollbar-thumb {
+    background: rgb(99, 185, 255);
 }
 
 .r-date {
     position: absolute;
-    left: 2px;
-    bottom: 2px;
-    opacity: 0.3;
-    user-select: none;
+    right: 20px;
+    bottom: 3px;
+    opacity: 0.5;
+    color: rgb(143, 143, 143);
 }
 
 .round-btn-delete {
     position: absolute;
     right: 15px;
-    bottom: 15px;
+    bottom: 20px;
     width: 30px;
     height: 30px;
     opacity: 0.5;
@@ -62,6 +95,7 @@ textarea:focus {
     background-position: center;
     background-image: url(../svg/close.svg);
 }
+
 .round-btn-delete:hover {
     opacity: 1;
     border: 2px solid rgb(51, 51, 51);
@@ -70,7 +104,7 @@ textarea:focus {
 .round-btn-url {
     position: absolute;
     right: 55px;
-    bottom: 15px;
+    bottom: 20px;
     width: 30px;
     height: 30px;
     opacity: 0.5;
@@ -80,6 +114,7 @@ textarea:focus {
     background-position: center;
     background-image: url(../svg/link.svg);
 }
+
 .round-btn-url:hover {
     opacity: 1;
     border: 2px solid rgb(51, 51, 51);
@@ -88,7 +123,7 @@ textarea:focus {
 .round-btn-edit {
     position: absolute;
     right: 95px;
-    bottom: 15px;
+    bottom: 20px;
     width: 30px;
     height: 30px;
     opacity: 0.5;
@@ -98,7 +133,18 @@ textarea:focus {
     background-position: center;
     background-image: url(../svg/edit.svg);
 }
+
 .round-btn-edit:hover {
     opacity: 1;
     border: 2px solid rgb(51, 51, 51);
+}
+.taresize-btn {
+    cursor: ns-resize;
+    position: absolute;
+    right: 0px;
+    bottom: 3px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    background-image: url(../svg/resize.svg);
 }

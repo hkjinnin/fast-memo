@@ -4,7 +4,8 @@ chrome.runtime.onMessage.addListener(function (request) {
     }
 });
 chrome.storage.local.get(["content"], function (result) {
-    const $body = document.getElementsByTagName("body")[0];
+    const $main = document.getElementById("main");
+    const $taresize = document.getElementsByClassName("taresize-btn");
     const $text_area = document.getElementsByTagName("textarea");
     const $delete_btn = document.getElementsByClassName("round-btn-delete");
     const $url_btn = document.getElementsByClassName("round-btn-url");
@@ -52,23 +53,22 @@ chrome.storage.local.get(["content"], function (result) {
         let text = escapeHtml(result.content[n][1]);
         let url_link = result.content[n][2];
         let title = escapeHtml(result.content[n][3]);
-
         var self_chk = function () {
             let pattern_check = new RegExp(chrome.runtime.id, "g");
             return pattern_check.test(url_link);
         };
-        var btn = function () {
+        var switch_btn = function () {
             if (type_chk() == "memo") {
                 return '<a style="right: 55px" class="round-btn-edit"></a>';
             }
-            return '<a class="round-btn-edit"></a><a title="' + title + '" class="round-btn-url"></a>';
+            return '<a title="memo画面で編集" class="round-btn-edit"></a><a title="' + title + '" class="round-btn-url"></a>';
         };
         var type_chk = function () {
             if (self_chk()) {
                 return "memo";
-            } else if(text === null) {
+            } else if (text === null) {
                 return "url";
-            } else if(!(text === null)){
+            } else if (!(text === null)) {
                 return "text"
             }
         };
@@ -87,11 +87,11 @@ chrome.storage.local.get(["content"], function (result) {
         };
         var ta_height = function () {
             font_size = 16
-            const height = (switch_text().length * (font_size / 9)) + 60;
+            const height = (switch_text().length * (font_size / 15)) + 10;
             return height;
-        }
+        };
         this.content = function () {
-            return '<div class="ta-div"><textarea style="height:' + ta_height() + 'px">' + switch_text() + '</textarea><span class="r-date">' + date + "</span>" + btn() + '<a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
+            return '<div class="ta-div"><textarea class="textarea-style" style="height:' + ta_height() + 'px">' + switch_text() + '</textarea><span class="r-date">' + date + '</span>' + switch_btn() + '<a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
         };
     };
     try {
@@ -100,9 +100,9 @@ chrome.storage.local.get(["content"], function (result) {
         }
         for (let i = result.content.length - 1; i >= 0; i--) {
             let show = new Show(i);
-            $body.insertAdjacentHTML("beforeend", show.content());
+            $main.insertAdjacentHTML("beforeend", show.content());
         }
-        $body.insertAdjacentHTML("beforeend", '<div class="last-div"></div>');
+        $main.insertAdjacentHTML("afterbegin", '<div class="memo-div">右クリックメニューでメモできます</div>');
         Array.from($text_area, (e) => {
             e.addEventListener("input", (e) => {
                 e_add(Array.prototype.indexOf.call($text_area, e.target), "s");
@@ -125,6 +125,6 @@ chrome.storage.local.get(["content"], function (result) {
         });
     } catch (e) {
         console.log(e);
-        $body.insertAdjacentHTML("beforeend", '<div style="text-align: center;"><h1>まだ何もメモしていません<br>右クリックメニューでメモできます</h1></div>');
+        $main.insertAdjacentHTML("beforeend", '<div class="memo-div">右クリックメニューでメモできます</div>');
     }
 });

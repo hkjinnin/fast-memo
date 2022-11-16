@@ -33,10 +33,10 @@ body{
 }
 .r-date {
     position: absolute;
-    left: 2px;
+    right: 2px;
     bottom: 2px;
+    font-size: large;
     opacity: 0.3;
-    user-select: none;
 }
 .round-btn-delete {
     display: block;
