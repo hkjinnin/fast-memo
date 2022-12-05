@@ -1,9 +1,9 @@
 
 {
     "manifest_version": 3,
-    "name": "シンプルメモ",
-    "version": "0.4.0",
-    "description": "シンプルに",
+    "name": "選択メモ",
+    "version": "0.4.1",
+    "description": "選択した箇所をメモ、シンプルで早い",
     "icons": {
         "48": "./appicon64.png"
     },
