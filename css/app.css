@@ -23,18 +23,19 @@ body {
 }
 
 .memo-div {
-    width: 100%;
-    height: 80px;
-    font-size: 24px;
-    text-align: center;
-    font-weight: bold;
-    color: rgb(86, 179, 255);
-    user-select: none;
-    box-sizing: border-box;
-    background: rgb(182, 222, 255);
-    border: dashed 2px rgb(35, 167, 255);
-    color: #454545;
-    margin-bottom: 7px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    height: 100%; 
+    font-size: 18px;
+}
+.memo-div > img{
+    position: absolute;
+    max-width: 100%; /* あなたの好みに合わせて画像の最大幅を調整 */
+    max-height: 100%; /* あなたの好みに合わせて画像の最大高さを調整 */
+    opacity: 0.2;
 }
 
 .ta-div {
