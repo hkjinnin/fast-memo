@@ -17,21 +17,23 @@ chrome.storage.local.get(["content"], function (result) {
         text = title;
     }
 
-    const taDiv = document.createElement("div");
-    taDiv.classList.add("ta-div");
+    function createElementWithClass(elementType, className) {
+        const element = document.createElement(elementType);
+        element.classList.add(className);
+        return element;
+    }
 
-    const textarea = document.createElement("textarea");
-    textarea.classList.add("text-area-style");
+    const taDiv = createElementWithClass("div", "ta-div");
+
+    const textarea = createElementWithClass("textarea", "text-area-style");
     textarea.value = text;
     taDiv.appendChild(textarea);
 
-    const rDate = document.createElement("span");
-    rDate.classList.add("r-date");
+    const rDate = createElementWithClass("span", "r-date");
     rDate.textContent = result.content[index][0];
     taDiv.appendChild(rDate);
 
-    const button = document.createElement("a");
-    button.classList.add("round-btn-delete");
+    const button = createElementWithClass("a", "round-btn-delete");
     button.title = "ダブルクリックで削除";
     taDiv.appendChild(button);
 
@@ -41,6 +43,7 @@ chrome.storage.local.get(["content"], function (result) {
         result.content[index][1] = textarea.value;
         chrome.storage.local.set(result);
     });
+
     button.addEventListener("dblclick", () => {
         result.content[index][1] = textarea.value;
         result.content.splice(index, 1);

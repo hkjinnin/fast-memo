@@ -1,6 +1,6 @@
 const now_date = () => {
-    let now = new Date();
-    let options = {
+    const now = new Date();
+    const options = {
         year: "numeric",
         month: "numeric",
         day: "numeric",
@@ -26,14 +26,14 @@ chrome.runtime.onStartup.addListener(active_contextmenu);
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
     switch (info.menuItemId) {
         case "memo":
-            now = now_date();
-            text = info.selectionText;
-            url_link = tab.url;
-            title = tab.title;
-            content = [now, text, url_link, title];
-            chrome.storage.local.get(function (result) {
-                result["content"] = result["content"] || [];
-                result["content"].push(content);
+            const now = now_date();
+            const text = info.selectionText;
+            const url_link = tab.url;
+            const title = tab.title;
+            const content = [now, text, url_link, title];
+            chrome.storage.local.get(["content"], function (result) {
+                result.content = result.content || [];
+                result.content.push(content);
                 chrome.storage.local.set(result);
                 try {
                     chrome.runtime.sendMessage({
