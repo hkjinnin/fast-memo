@@ -5,14 +5,14 @@
     "version": "0.5.0",
     "description": "選択した箇所をメモする",
     "icons": {
-        "48": "./appicon64.png"
+        "48": "./appicon512.png"
     },
     "background": {
         "service_worker": "./background.js"
     },
     "action": {
         "default_icon": {
-            "32": "appicon64.png"
+            "32": "appicon512.png"
         },
         "default_popup": "app.html"
     },
