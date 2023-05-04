@@ -102,7 +102,6 @@ chrome.storage.local.get(["content"], function (result) {
             let show = new Show(i);
             $main.insertAdjacentHTML("beforeend", show.content());
         }
-        $main.insertAdjacentHTML("afterbegin", '<div class="memo-div">右クリックメニューでメモできます</div>');
         Array.from($text_area, (e) => {
             e.addEventListener("input", (e) => {
                 e_add(Array.prototype.indexOf.call($text_area, e.target), "s");
