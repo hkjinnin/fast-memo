@@ -136,7 +136,7 @@ chrome.storage.local.get(["content"], function (result) {
 
     } catch (e) {
         if (e === "No Element") {
-            $main.insertAdjacentHTML("beforeend", '<div class="memo-div"><img src="../svg/exclamation.svg">使い方文字を選択した状態→右クリックメニューのメモをクリック</div>');
+            $main.insertAdjacentHTML("beforeend", '<div class="memo-div"></div>');
         } else {
             console.log(e);
         }

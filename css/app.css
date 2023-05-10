@@ -31,12 +31,6 @@ body {
     height: 100%; 
     font-size: 18px;
 }
-.memo-div > img{
-    position: absolute;
-    max-width: 100%; /* あなたの好みに合わせて画像の最大幅を調整 */
-    max-height: 100%; /* あなたの好みに合わせて画像の最大高さを調整 */
-    opacity: 0.2;
-}
 
 .ta-div {
     width: auto;
