@@ -1,7 +1,7 @@
 
 {
     "manifest_version": 3,
-    "name": "メモ用紙",
+    "name": "クイックメモ",
     "version": "0.5.0",
     "description": "選択した箇所をメモする",
     "icons": {
