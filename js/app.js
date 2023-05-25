@@ -136,7 +136,7 @@ chrome.storage.local.get(["content"], function (result) {
 
     } catch (e) {
         if (e === "No Element") {
-            $main.insertAdjacentHTML("beforeend", '<div class="memo-div"></div>');
+            $main.insertAdjacentHTML("beforeend", '<div class="memo-div">使い方</div>');
         } else {
             console.log(e);
         }
