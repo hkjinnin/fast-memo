@@ -52,6 +52,6 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
                     console.log("not find reciver");
                 }
             });
-            break;
+        break;
     }
 });
