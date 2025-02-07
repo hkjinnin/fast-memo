@@ -28,8 +28,7 @@ class Memo {
 
     // url_linkが現在のランタイムIDを含むかチェック
     self_chk() {
-        let pattern_check = new RegExp(chrome.runtime.id, "g");
-        return pattern_check.test(this.url_link);
+        return this.url_link.includes(chrome.runtime.id);
     }
 
     // メモのタイプに応じて編集ボタンを切り替える
@@ -42,14 +41,13 @@ class Memo {
 
     // メモのタイプをチェック
     type_chk() {
-        if (this.self_chk()) {
-            return "memo";
-        } else if (this.text === null) {
-            return "url";
-        } else if (!(this.text === null)) {
-            return "text";
-        }
+    if (this.self_chk()) {
+        return "memo";
+    } else if (this.text === null) {
+        return "url";
     }
+    return "text";
+}
 
     // メモのタイプに応じて表示するテキストを切り替える
     switch_text() {
@@ -68,31 +66,39 @@ class Memo {
 
     // テキストエリアの高さを計算
     ta_height() {
-        const font_size = 16;
-        const height = (this.switch_text().length * (font_size / 15)) + 10;
+        const textArea = document.createElement("textarea");
+        textArea.style.fontSize = "16px";
+        textArea.value = this.switch_text();
+        document.body.appendChild(textArea);
+        const height = textArea.scrollHeight + 10;
+        document.body.removeChild(textArea);
         return height;
     }
 
     // メモのコンテンツを生成
     content() {
-        return '<div class="ta-div"><textarea class="textarea-style" style="height:' + this.ta_height() + 'px">' + this.switch_text() + '</textarea><span class="r-date">' + this.date + '</span>' + this.switch_btn() + '<a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
+        return '<div class="ta-div" data-index="' + this.n + '"><textarea class="textarea-style" style="height:' + this.ta_height() + 'px">' + this.switch_text() + '</textarea><span class="r-date">' + this.date + '</span>' + this.switch_btn() + '<a title="ダブルクリックで削除" class="round-btn-delete"></a></div>';
     }
 }
 
+
+function updateStorage(result) {
+    chrome.storage.local.set(result);
+}
 // メモの追加、更新、削除、URLの開き方を制御
 function e_add(n, req, result) {
     switch (req) {
         case "s":
-            result.content[result.content.length - 1 - n][1] = document.getElementsByTagName("textarea")[n].value;
-            chrome.storage.local.set(result);
+            result.content[n][1] = document.getElementsByTagName("textarea")[n].value;
+            updateStorage(result);
             break;
         case "d":
-            result.content.splice(result.content.length - 1 - n, 1);
-            chrome.storage.local.set(result);
+            result.content.splice(n, 1);
+            updateStorage(result);
             location.reload();
             break;
         case "u":
-            window.open(result.content[result.content.length - 1 - n][2]);
+            window.open(result.content[n][2]);
             break;
         case "e":
             const url = new URL("./edit.html", "chrome-extension://" + chrome.runtime.id + "/");
@@ -105,15 +111,17 @@ function e_add(n, req, result) {
 // 与えられたクラス名を持つすべての要素にイベントリスナーを追加する関数
 function addEventListenerByClass(className, event, handler) {
     const elements = document.getElementsByClassName(className);
-    Array.from(elements, (e) => {
-        e.addEventListener(event, handler);
-    });
+    [...elements].forEach(e => e.addEventListener(event, handler));
 }
 
 // "memo"メッセージを受け取ったときにページをリロードする
 chrome.runtime.onMessage.addListener(function (request) {
-    if (request.trigger == "memo") {
-        location.reload();
+    if (request.trigger === "memo") {
+        try {
+            location.reload();
+        } catch (e) {
+            console.error("Error during reload:", e);
+        }
     }
 });
 
@@ -130,26 +138,34 @@ chrome.storage.local.get(["content"], function (result) {
         }
 
         // イベントハンドラーの設定
-        const handleEvent = (e, elements, action) => {
-            const index = Array.prototype.indexOf.call(elements, e.target);
-            e_add(index, action, result);
+        const handleEvent = (e, action) => {
+            const memoDiv = e.target.closest('.ta-div');
+            if (memoDiv) {
+                const dataIndex = memoDiv.getAttribute('data-index');
+                const index = parseInt(dataIndex, 10);
+                if (isNaN(index)) {
+                    console.error('Invalid data-index:', dataIndex);
+                } else {
+                    e_add(index, action, result);
+                }
+            }
         };
 
         // 各クラスに対してイベントリスナーを追加
         addEventListenerByClass("textarea-style", "input", (e) => {
-            handleEvent(e, document.getElementsByTagName("textarea"), "s", result);
+            handleEvent(e, "s");
         });
 
         addEventListenerByClass("round-btn-delete", "dblclick", (e) => {
-            handleEvent(e, document.getElementsByClassName("round-btn-delete"), "d", result);
+            handleEvent(e, "d");
         });
 
         addEventListenerByClass("round-btn-url", "click", (e) => {
-            handleEvent(e, document.getElementsByClassName("round-btn-url"), "u", result);
+            handleEvent(e, "u");
         });
 
         addEventListenerByClass("round-btn-edit", "click", (e) => {
-            handleEvent(e, document.getElementsByClassName("round-btn-edit"), "e", result);
+            handleEvent(e, "e");
         });
 
     } catch (e) {

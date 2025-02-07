@@ -1,9 +1,8 @@
 // データ取得
 chrome.storage.local.get(["content"], function (result) {
     // URLパラメータから対象のインデックスを取得
-    const t = new URL(window.location.href).searchParams.get("t");
-    const index = result.content.length - 1 - t;
-
+    const index = new URL(window.location.href).searchParams.get("t");
+    
     // 必要なデータを取得
     let text = result.content[index][1];
     let urlLink = result.content[index][2];
