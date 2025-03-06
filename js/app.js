@@ -89,7 +89,9 @@ function updateStorage(result) {
 function e_add(n, req, result) {
     switch (req) {
         case "s":
-            result.content[n][1] = document.getElementsByTagName("textarea")[n].value;
+            const memoDiv = document.querySelector(`.ta-div[data-index="${n}"]`);
+            const textarea = memoDiv.querySelector("textarea");
+            result.content[n][1] = textarea.value;
             updateStorage(result);
             break;
         case "d":
